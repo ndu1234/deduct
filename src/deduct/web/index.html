@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>deduct</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%23177a5c'/><circle cx='5' cy='8' r='1.6' fill='white'/><circle cx='11' cy='5' r='1.6' fill='white'/><circle cx='11' cy='11' r='1.6' fill='white'/><path d='M5 8 11 5M5 8l6 3' stroke='white' stroke-width='1.1'/></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app" id="app" data-view="chat">
+  <aside class="sessions" id="sessions" aria-label="Conversations">
+    <div class="sessions-head">
+      <span class="brand">deduct</span>
+      <button class="icon-btn only-drawer" id="close-sessions" aria-label="Close conversations">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+      </button>
+    </div>
+    <button class="btn primary new-chat" id="new-chat">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg>
+      New chat
+    </button>
+    <nav class="session-list" id="session-list"></nav>
+    <footer class="global-stats" id="global-stats"></footer>
+  </aside>
+  <div class="scrim" id="scrim" hidden></div>
+
+  <main class="chat">
+    <header class="chat-head">
+      <button class="icon-btn only-drawer" id="open-sessions" aria-label="Show conversations">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11"/></svg>
+      </button>
+      <div class="title-wrap">
+        <h1 id="chat-title">New conversation</h1>
+        <p class="meter" id="chat-meter"></p>
+      </div>
+      <div class="view-switch" role="tablist" aria-label="View">
+        <button role="tab" data-view="chat" aria-selected="true">Chat</button>
+        <button role="tab" data-view="memory" aria-selected="false">Memory</button>
+      </div>
+    </header>
+
+    <div class="notice" id="notice" role="status" hidden></div>
+
+    <section class="messages" id="messages" aria-live="polite"></section>
+
+    <form class="composer" id="composer">
+      <label class="visually-hidden" for="input">Message</label>
+      <textarea id="input" rows="1" placeholder="Message" autocomplete="off"></textarea>
+      <button type="submit" class="btn primary" id="send">Send</button>
+    </form>
+  </main>
+
+  <aside class="inspector" id="inspector" aria-label="Memory inspector">
+    <div class="tabs" role="tablist">
+      <button role="tab" id="tab-btn-turn" aria-controls="tab-turn" aria-selected="true" data-tab="turn">This turn</button>
+      <button role="tab" id="tab-btn-facts" aria-controls="tab-facts" aria-selected="false" data-tab="facts">Facts <span class="count" id="facts-count"></span></button>
+      <button role="tab" id="tab-btn-summary" aria-controls="tab-summary" aria-selected="false" data-tab="summary">Summary</button>
+    </div>
+    <div class="tab-panel" id="tab-turn" role="tabpanel" aria-labelledby="tab-btn-turn"></div>
+    <div class="tab-panel" id="tab-facts" role="tabpanel" aria-labelledby="tab-btn-facts" hidden>
+      <div class="facts-tools">
+        <label class="visually-hidden" for="facts-filter">Filter facts</label>
+        <input type="search" id="facts-filter" placeholder="Filter facts" autocomplete="off">
+      </div>
+      <div id="facts-list"></div>
+    </div>
+    <div class="tab-panel" id="tab-summary" role="tabpanel" aria-labelledby="tab-btn-summary" hidden></div>
+  </aside>
+</div>
+
+<div class="toast" id="toast" role="status" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>
